@@ -26,8 +26,12 @@ database = firebase.database()
 #         print('Download Failed')
 
 ## 2. set data to firebase
+## set data in given format only
 database.child("Receipt")
-data = {"Cat1": "price1", "Cat2": "price2"}
+data = {"Data": # "Data" spelling should be correct
+                {"cat1":"price1", ## this doesnt matter
+                 "cat2":"price2"}
+       }
 database.set(data)
 
 ## 3. get val
