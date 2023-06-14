@@ -16,7 +16,9 @@ config = {
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
 database = firebase.database()
+storage.child()
 
+storage.download("receipt.jpg" ,"temp.jpg" )
 ## 1. download image from database
 # all_files = storage.child().list_files()
 # for file in all_files:            
