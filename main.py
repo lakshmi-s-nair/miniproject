@@ -140,8 +140,9 @@ def hello_world():
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     #plot_gray(gray)
 
-    # Get rid of noise with Gaussian Blur filter
-    blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+    # Get rid of noise with Adaptive Threshold filter
+        ret3,blurred = cv2.threshold(gray,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+    blurred = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 21, 10)
     #plot_gray(blurred)
 
     # Detect white regions
