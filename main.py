@@ -243,10 +243,10 @@ def hello_world():
         
         prediction = np.array_str(prediction).replace("[","").replace("]","").replace("'","")
         if prediction is not None and prediction in data:
-            data[prediction] += 1
+            data[prediction] += amt
         else:
             # data.append(prediction)
-            data[prediction] = 1
+            data[prediction] = amt
     # print(data)
     database.set(data)
     
