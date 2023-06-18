@@ -141,7 +141,8 @@ def hello_world():
     #plot_gray(gray)
 
     # Get rid of noise with Adaptive Threshold filter
-        ret3,blurred = cv2.threshold(gray,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+    blurred=cv2.GaussianBlur(gray,(5,5),0)
+    ret3,blurred = cv2.threshold(blurred,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
     blurred = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 21, 10)
     #plot_gray(blurred)
 
@@ -227,6 +228,8 @@ def hello_world():
         # if(text.__contains__(words_pattern)):
         # print(text)
         #print()
+        
+        
         temp=re.findall(words_pattern, text, flags=re.IGNORECASE)
         text= " ".join(temp)
         txt = [text]
