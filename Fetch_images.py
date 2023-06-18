@@ -30,12 +30,12 @@ storage.download("receipt.jpg" ,"temp.jpg" )
 
 ## 2. set data to firebase
 # set data in given format only
-database.child()
-data = {"Data": # "Data" spelling should be correct
-                {"cat1":"price1", ## this doesnt matter
-                 "cat2":"price2"}
-       }
-database.push(data)
+# database.child()
+# data = {"Data": # "Data" spelling should be correct
+#                 {"cat1":"price1", ## this doesnt matter
+#                  "cat2":"price2"}
+#        }
+# database.push(data)
 
 ## 3. get val from database
 # price = database.child("Receipt").get()
@@ -44,18 +44,18 @@ database.push(data)
 
 ## 4. number of days
 
-current_time = datetime.now()
+# current_time = datetime.now()
 
-d0 = date(current_time.year, 6, 1)
-d1 = date(current_time.year, current_time.month, current_time.day)
-delta = d1 - d0
-data2 = {"analytics":
-         {  
-            "months":(delta.days)//30,
-            "days":delta.days,
-            "total":"total",
-        }}
+# d0 = date(current_time.year, 6, 1)
+# d1 = date(current_time.year, current_time.month, current_time.day)
+# delta = d1 - d0
+# data2 = {"analytics":
+#          {  
+#             "months":(delta.days)//30,
+#             "days":delta.days,
+#             "total":"total",
+#         }}
 # database.child()
-database.push(data2)
+# database.push(data2)
 
 
