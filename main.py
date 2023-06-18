@@ -229,7 +229,7 @@ def hello_world():
         # print(text)
         #print()
         num=re.findall(r'[-+]?(?:\d*\.*\d+)', text, flags=re.IGNORECASE)
-        price= num[-1]
+        amt= num[-1]
         
         temp=re.findall(words_pattern, text, flags=re.IGNORECASE)
         text= " ".join(temp)
@@ -237,7 +237,7 @@ def hello_world():
         prediction = model.predict(txt)
         print(txt)
         print(prediction)
-        print(price)
+        print(amt)
         print()
         count+=1
         
