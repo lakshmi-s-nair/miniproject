@@ -248,19 +248,19 @@ def hello_world():
             # data.append(prediction)
             data[prediction] = amt
     # print(data)
-    database.set(data)
+    data1 = {"data" : data}
+    database.set(data1)
     
     current_time = datetime.now()
 
     d0 = date(current_time.year, 6, 1)
     d1 = date(current_time.year, current_time.month, current_time.day)
     delta = d1 - d0
-    data2 = {"analytics":
-            {  
+    data2 ={  
                 "months":(delta.days)//30,
                 "days":delta.days,
                 "total":"total",
-            }}
+            }
     database.child("expenditure")
     database.set(data2)
 
