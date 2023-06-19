@@ -228,7 +228,8 @@ def hello_world():
         # if(text.__contains__(words_pattern)):
         # print(text)
         #print()
-        
+        num=re.findall(r'[-+]?(?:\d*\.*\d+)', text, flags=re.IGNORECASE)
+        amt= num[-1]
         
         temp=re.findall(words_pattern, text, flags=re.IGNORECASE)
         text= " ".join(temp)
@@ -236,15 +237,16 @@ def hello_world():
         prediction = model.predict(txt)
         print(txt)
         print(prediction)
+        print(amt)
         print()
         count+=1
         
         prediction = np.array_str(prediction).replace("[","").replace("]","").replace("'","")
         if prediction is not None and prediction in data:
-            data[prediction] += 1
+            data[prediction] += amt
         else:
             # data.append(prediction)
-            data[prediction] = 1
+            data[prediction] = amt
     # print(data)
     database.set(data)
     
