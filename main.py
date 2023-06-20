@@ -267,5 +267,5 @@ def hello_world():
     return '<h2>Hello World 2<h2>'
 
  
-# if __name__ == '__main__':
-#     app.run()
+if __name__ == '__main__':
+    app.run()
