@@ -1,5 +1,4 @@
 from flask import Flask
-#from flask_restful import Resource, Api, reqparse
 from Fetch_images import storage, database
 import sys
 import numpy as np
@@ -22,7 +21,6 @@ with open('SVC_model.pkl', 'rb') as f:
 
 
 app = Flask(__name__)
-#api = Api(app)
 data = {
        'Beauty & Hygiene' : 0,
        'Kitchen, Garden & Pets': 0, 
