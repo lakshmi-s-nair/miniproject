@@ -125,7 +125,7 @@ def bw_scanner(image):
 def hello_world():
     # database.child()
     storage.child()
-    storage.download("receipt.jpeg" ,"temp.jpg" )
+    storage.download("receipt.jpg" ,"temp.jpg" )
     file_name = "temp.jpg"
     img = Image.open(file_name)
     img.thumbnail((800,800), Image.ANTIALIAS)
@@ -216,6 +216,7 @@ def hello_world():
     lst3=lst[count:]
     words_pattern = '[a-z]+'
     # words_pattern = '^[a-z_]+$'
+    total_amount = 0.0 ## for analytics total 
     for i in lst3:
         for j in lst2:
             # print(j)
@@ -230,7 +231,7 @@ def hello_world():
         #print()
         num=re.findall(r'[-+]?(?:\d*\.*\d+)', text, flags=re.IGNORECASE)
         amt= num[-1]
-        
+        total_amount += float(amt)
         temp=re.findall(words_pattern, text, flags=re.IGNORECASE)
         text= " ".join(temp)
         txt = [text]
@@ -238,15 +239,16 @@ def hello_world():
         print(txt)
         print(prediction)
         print(amt)
+        print(type(amt))
         print()
         count+=1
         
         prediction = np.array_str(prediction).replace("[","").replace("]","").replace("'","")
         if prediction is not None and prediction in data:
-            data[prediction] += amt
+            data[prediction] += float(amt)
         else:
             # data.append(prediction)
-            data[prediction] = amt
+            data[prediction] = float(amt)
     # print(data)
     data1 = {"data" : data}
     database.set(data1)
@@ -259,7 +261,7 @@ def hello_world():
     data2 ={  
                 "months":(delta.days)//30,
                 "days":delta.days,
-                "total":"total",
+                "total":total_amount,
             }
     database.child("expenditure")
     database.set(data2)
