@@ -1,21 +1,19 @@
 from flask import Flask
 from Fetch_images import storage, database
+from datetime import date, datetime
 import sys
+import re
+
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 import matplotlib.image as pimg
 import pytesseract
-import re
-#pytesseract.pytesseract.tesseract_cmd = "C:\Users\Lakshmi\AppData\Local\Programs\Tesseract-OCR\tesseract.exe"
-
 from skimage.filters import threshold_local
 from PIL import Image
 from pytesseract import Output
-from datetime import date, datetime
 
-import pickle
-from joblib import dump, load
+from joblib import load
 with open('SVC_model.pkl', 'rb') as f:
     model = load(f)
 
@@ -177,7 +175,8 @@ def hello_world():
     result = bw_scanner(scanned)
     # plot_gray(result)
 
-    pytesseract.pytesseract.tesseract_cmd = r"C:/Users/SANDRA/AppData/Local/Programs/Tesseract-OCR/tesseract"
+    ### uncomment this line and provide local path to tesseract, in case an error occurs
+    # pytesseract.pytesseract.tesseract_cmd = r"C:/Users/USER/AppData/Local/Programs/Tesseract-OCR/tesseract"
 
     d = pytesseract.image_to_data(result, output_type=Output.DICT)
     n_boxes = len(d['level'])
@@ -209,26 +208,20 @@ def hello_world():
             break
 
     extracted_text = pytesseract.image_to_string(result)
-    # print(extracted_text)
 
     lst2=['total','tolal','lolal','tatal','totol','lotol','yotal']
     flag=0
     lst3=lst[count:]
     words_pattern = '[a-z]+'
-    # words_pattern = '^[a-z_]+$'
     total_amount = 0.0 ## for analytics total 
     for i in lst3:
         for j in lst2:
-            # print(j)
             if j in i.split():
                 flag=1
                 break
         if flag==1:
             break
         text=lst[count]
-        # if(text.__contains__(words_pattern)):
-        # print(text)
-        #print()
         num=re.findall(r'[-+]?(?:\d*\.*\d+)', text, flags=re.IGNORECASE)
         amt= num[-1]
         total_amount += float(amt)
@@ -243,18 +236,17 @@ def hello_world():
         print()
         count+=1
         
+        ## syntax correcting before pushing to firebase database
         prediction = np.array_str(prediction).replace("[","").replace("]","").replace("'","")
         if prediction is not None and prediction in data:
             data[prediction] += float(amt)
         else:
-            # data.append(prediction)
             data[prediction] = float(amt)
-    # print(data)
     data1 = {"data" : data}
     database.set(data1)
     
     current_time = datetime.now()
-
+    ## first date is set to June 1st 2023, (yyyy,mm,dd)
     d0 = date(current_time.year, 6, 1)
     d1 = date(current_time.year, current_time.month, current_time.day)
     delta = d1 - d0

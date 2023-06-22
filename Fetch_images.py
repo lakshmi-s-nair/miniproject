@@ -18,8 +18,7 @@ storage = firebase.storage()
 database = firebase.database()
 storage.child()
 
-# storage.download("receipt.jpg" ,"temp.jpg" )
-## 1. download image from database
+### 1. download image from database
 # all_files = storage.child().list_files()
 # for file in all_files:            
 #     try:
@@ -28,24 +27,22 @@ storage.child()
 #     except:    
 #         print('Download Failed')
 
-## 2. set data to firebase
+### 2. set data to firebase
 # set data in given format only
 # database.child()
-# data = {"Data": # "Data" spelling should be correct
-#                 {"cat1":"price1", ## this doesnt matter
-#                  "cat2":"price2"}
+# data = {"Data": 
+#                 {"category1":"price1",
+#                  "category2":"price2"}
 #        }
 # database.push(data)
 
-## 3. get val from database
-# price = database.child("Receipt").get()
+### 3. get val from database
+# price = database.child("Receipt_Images").get()
 # data = price.val() 
 # print(data)
 
-## 4. number of days
-
+### 4. number of days
 # current_time = datetime.now()
-
 # d0 = date(current_time.year, 6, 1)
 # d1 = date(current_time.year, current_time.month, current_time.day)
 # delta = d1 - d0
