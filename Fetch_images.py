@@ -3,13 +3,13 @@ import pyrebase
 from datetime import date, datetime
 
 config = {
-    "apiKey": "AIzaSyCWq2F-6h_82SJdt_bjawGh6pH2bpNpHzA",
-    "authDomain": "fintrack-d05af.firebaseapp.com",
-    "databaseURL": "https://fintrack-d05af-default-rtdb.firebaseio.com",
-    "projectId": "fintrack-d05af",
-    "storageBucket": "fintrack-d05af.appspot.com",
-    "messagingSenderId": "475771069065",
-    "appId": "1:475771069065:web:c39cd59224de3bdb9f1c58",
+    "apiKey": "YOUR_API_KEY",
+    "authDomain": "YOUR_AUTH_DOMAIN",
+    "databaseURL": "YOUR_DATABASE_URL",
+    "projectId": "YOUR_PROJECT_ID",
+    "storageBucket": "YOUR_STORAGE_BUCKET",
+    "messagingSenderId": "YOUR_MESSAGING_SENDER_ID",
+    "appId": "YOUR_APP_ID",
     "serviceAccount": "serviceAccount.json" 
 }
 
